@@ -16,6 +16,9 @@ public class PlayManager : MonoBehaviour
 
     bool turnPlayed = false;
 
+    [SerializeField] Player player;
+    [SerializeField] OtherPlayer otherPlayer;
+
     enum State
     {
         IDLE,
