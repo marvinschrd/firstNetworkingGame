@@ -43,7 +43,24 @@ public class UIManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        switch(state)
+        {
+            case State.CONNECTING:
+                break;
+            case State.CHECKINGTURN:
+                break;
+            case State.ATTACK:
+                break;
+            case State.DEFENSE:
+                break;
+            case State.PLAYING:
+                break;
+            case State.WAITING:
+                break;
+            case State.WAITINGFORTWOPPLAYERS:
+                break;
+
+        }
     }
 
     void SendChoices(string choice)
