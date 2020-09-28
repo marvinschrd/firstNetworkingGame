@@ -2,12 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class UIManager : MonoBehaviour
 {
     [SerializeField] Client client;
     [SerializeField] PlayManager playManager;
     string attackChoice;
     string defenseChoice;
+
+    [SerializeField] GameObject ConnectingPanel;
+    [SerializeField] GameObject WaitingPanel;
+    [SerializeField] GameObject AttackPanel;
+    [SerializeField] GameObject DefensePanel;
+
 
     enum Choices
     {
@@ -63,34 +70,52 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    void SendChoices(string choice)
+    public void Connect()
+    {
+        client.SetupSocket();
+        ConnectingPanel.SetActive(false);
+    }
+
+   void SendChoices(string choice)
     {
         client.SendChoice(choice);
         playManager.updateChoices(choice);
     }
 
-    void FireAttack()
+     public void FireAttack()
     {
         attackChoice = "FireAttack";
+        SendChoices(attackChoice);
+        AttackPanel.SetActive(false);
     }
-    void IceAttack()
+     public void IceAttack()
     {
         attackChoice = "IceAttack";
+        SendChoices(attackChoice);
+        AttackPanel.SetActive(false);
     }
-    void PoisonAttack()
+    public void PoisonAttack()
     {
         attackChoice = "PoisonAttack";
+        SendChoices(attackChoice);
+        AttackPanel.SetActive(false);
     }
-    void FireWall()
+   public void FireWall()
     {
         defenseChoice = "FireWall";
+        SendChoices(defenseChoice);
+        DefensePanel.SetActive(false);
     }
-    void IceWall()
+    public void IceWall()
     {
         defenseChoice = "IceWall";
+        SendChoices(defenseChoice);
+        DefensePanel.SetActive(false);
     }
-    void PoisonWall()
+   public void PoisonWall()
     {
         defenseChoice = "PoisonWall";
+        SendChoices(defenseChoice);
+        DefensePanel.SetActive(false);
     }
 }

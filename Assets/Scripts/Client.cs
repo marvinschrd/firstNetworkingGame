@@ -23,27 +23,27 @@ public class Client : MonoBehaviour
     void Start()
     {
         socket = new TcpClient();
-        if (SetupSocket())
-        {
-            Debug.Log("socket is set up");
-            SendMessage();
-        }
+        //if (SetupSocket())
+        //{
+        //    Debug.Log("socket is set up");
+        //    SendMessage();
+        //}
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (!socket.Connected)
-        {
-            SetupSocket();
-        }
+        //if (!socket.Connected)
+        //{
+        //    SetupSocket();
+        //}
         if (Input.GetKeyDown(KeyCode.Space))
         {
             SendMessage();
         }
     }
 
-    bool SetupSocket() // set up tcp connection
+    public bool SetupSocket() // set up tcp connection
     {
         try
         {
