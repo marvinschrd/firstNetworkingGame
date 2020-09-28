@@ -5,6 +5,7 @@ using UnityEngine;
 public class UIManager : MonoBehaviour
 {
     [SerializeField] Client client;
+    [SerializeField] PlayManager playManager;
     string attackChoice;
     string defenseChoice;
 
@@ -48,6 +49,7 @@ public class UIManager : MonoBehaviour
     void SendChoices(string choice)
     {
         client.SendChoice(choice);
+        playManager.updateChoices(choice);
     }
 
     void FireAttack()
