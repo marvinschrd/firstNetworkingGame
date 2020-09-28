@@ -14,7 +14,7 @@ public class Client : MonoBehaviour
     public int Port = 64000;
 
 
-   
+
     private TcpClient socket = null;
     private NetworkStream ns = null;
     private StreamWriter sWriter = null;
@@ -26,6 +26,7 @@ public class Client : MonoBehaviour
         if (SetupSocket())
         {
             Debug.Log("socket is set up");
+            SendMessage();
         }
     }
 
@@ -59,6 +60,29 @@ public class Client : MonoBehaviour
             Debug.Log("Socket error: " + e);
             return false;
         }
+    }
+
+    public void SendChoice(string choice)
+    {
+        if (socket == null)
+        {
+            return;
+        }
+        try
+        {
+            NetworkStream stream = socket.GetStream();
+            if (stream.CanWrite)
+            {
+                byte[] clientMessageAsByteArray = System.Text.Encoding.UTF8.GetBytes(choice);
+                stream.Write(clientMessageAsByteArray, 0, clientMessageAsByteArray.Length);
+                Debug.Log("Client sent his message - should be received by server");
+            }
+        }
+        catch (SocketException socketException)
+        {
+            Debug.Log("Socket exception: " + socketException);
+        }
+
     }
 
     void SendMessage() // send message to server from the client
